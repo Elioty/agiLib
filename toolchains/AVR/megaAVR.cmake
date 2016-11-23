@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 3.0)
+cmake_policy(SET CMP0011 NEW)
+
+include("${CMAKE_CURRENT_LIST_DIR}/AVR.cmake")
+
+set(ATMEGA_FLAGS "-D__AGILIB_FAMILY_AVR_megaAVR")
+set(__AGILIB_FAMILY             "megaAVR")
+set(__AGILIB_FAMILY_AVR_megaAVR "TRUE")
+
+set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} ${ATMEGA_FLAGS}")
+set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   ${ATMEGA_FLAGS}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${ATMEGA_FLAGS}")
+
+unset(ATMEGA_FLAGS)

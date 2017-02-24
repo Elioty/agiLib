@@ -33,6 +33,7 @@
  */
 
 #ifndef __AGILIB_BASE_INTEGER__
+#define __AGILIB_BASE_INTEGER__
 
 namespace agiLib {
   using u8 = __UINT8_TYPE__;
@@ -59,4 +60,4 @@ namespace agiLib {
 #undef __AGILIB_INTEGER_ASSERTS
 }
 
-#endif
+#endif//__AGILIB_BASE_INTEGER__

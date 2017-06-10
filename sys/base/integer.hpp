@@ -58,6 +58,37 @@ namespace agiLib {
   __AGILIB_INTEGER_ASSERTS(64);
 
 #undef __AGILIB_INTEGER_ASSERTS
+
+  namespace Private {
+    template<int bits, bool sign>
+    struct Integer;
+
+#define __AGILIB_INTEGER_TEMPLATE_TYPES(bits) \
+    template<> \
+    struct Integer<bits, true> { \
+      using Type = s##bits; \
+    }; \
+    template<> \
+    struct Integer<bits, false> { \
+      using Type = u##bits; \
+    }
+
+    __AGILIB_INTEGER_TEMPLATE_TYPES(8);
+    __AGILIB_INTEGER_TEMPLATE_TYPES(16);
+    __AGILIB_INTEGER_TEMPLATE_TYPES(32);
+    __AGILIB_INTEGER_TEMPLATE_TYPES(64);
+
+#undef __AGILIB_INTEGER_TEMPLATE_TYPES
+  }
+
+  template<int bits, bool sign>
+  using Integer = typename Private::Integer<bits, sign>::Type;
+
+  template<int bits>
+  using SignedInteger = Integer<bits, true>;
+
+  template<int bits>
+  using UnsignedInteger = Integer<bits, false>;
 }
 
 #endif//__AGILIB_BASE_INTEGER__
